@@ -74,6 +74,18 @@ set_target_properties(${BINARY_NAME}
 # them to the application.
 include(flutter/generated_plugins.cmake)
 
+# Rive 0.13 bundles native code that triggers newer Clang diagnostics.
+# Keep these warnings visible without blocking the third-party plugin build.
+if(TARGET rive_common_plugin AND CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+  include(CheckCXXCompilerFlag)
+  foreach(warning nontrivial-memcall deprecated-builtins array-bounds)
+    check_cxx_compiler_flag("-Werror=${warning}" "HAS_WARNING_${warning}")
+    if(HAS_WARNING_${warning})
+      target_compile_options(rive_common_plugin PRIVATE "-Wno-error=${warning}")
+    endif()
+  endforeach()
+endif()
+
 
 # === Installation ===
 # By default, "installing" just makes a relocatable bundle in the build
