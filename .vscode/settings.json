@@ -1,0 +1,27 @@
+{
+  "dart.flutterSdkPath": "/home/cabster/Documents/Codex/2026-10-04/ada-1-instalaci-n-del-entorno/work/flutter",
+  "dart.env": {
+    "FLUTTER_ROOT": "/home/cabster/Documents/Codex/2026-10-04/ada-1-instalaci-n-del-entorno/work/flutter",
+    "ANDROID_HOME": "/home/cabster/Documents/Codex/2026-10-04/ada-1-instalaci-n-del-entorno/work/android-sdk",
+    "ANDROID_SDK_ROOT": "/home/cabster/Documents/Codex/2026-10-04/ada-1-instalaci-n-del-entorno/work/android-sdk",
+    "ANDROID_USER_HOME": "/home/cabster/Documents/Codex/2026-10-04/ada-1-instalaci-n-del-entorno/work/android-user",
+    "ANDROID_AVD_HOME": "/home/cabster/Documents/Codex/2026-10-04/ada-1-instalaci-n-del-entorno/work/android-user/avd",
+    "JAVA_HOME": "/home/cabster/Documents/Codex/2026-10-04/ada-1-instalaci-n-del-entorno/work/jdk17",
+    "PUB_CACHE": "/home/cabster/Documents/Codex/2026-10-04/ada-1-instalaci-n-del-entorno/work/pub-cache",
+    "GRADLE_USER_HOME": "/home/cabster/Documents/Codex/2026-10-04/ada-1-instalaci-n-del-entorno/work/gradle",
+    "XDG_CONFIG_HOME": "/home/cabster/Documents/Codex/2026-10-04/ada-1-instalaci-n-del-entorno/work/config",
+    "FLUTTER_SUPPRESS_ANALYTICS": "true"
+  },
+  "terminal.integrated.env.linux": {
+    "FLUTTER_ROOT": "/home/cabster/Documents/Codex/2026-10-04/ada-1-instalaci-n-del-entorno/work/flutter",
+    "ANDROID_HOME": "/home/cabster/Documents/Codex/2026-10-04/ada-1-instalaci-n-del-entorno/work/android-sdk",
+    "ANDROID_SDK_ROOT": "/home/cabster/Documents/Codex/2026-10-04/ada-1-instalaci-n-del-entorno/work/android-sdk",
+    "ANDROID_USER_HOME": "/home/cabster/Documents/Codex/2026-10-04/ada-1-instalaci-n-del-entorno/work/android-user",
+    "ANDROID_AVD_HOME": "/home/cabster/Documents/Codex/2026-10-04/ada-1-instalaci-n-del-entorno/work/android-user/avd",
+    "JAVA_HOME": "/home/cabster/Documents/Codex/2026-10-04/ada-1-instalaci-n-del-entorno/work/jdk17",
+    "PUB_CACHE": "/home/cabster/Documents/Codex/2026-10-04/ada-1-instalaci-n-del-entorno/work/pub-cache",
+    "GRADLE_USER_HOME": "/home/cabster/Documents/Codex/2026-10-04/ada-1-instalaci-n-del-entorno/work/gradle",
+    "FLUTTER_SUPPRESS_ANALYTICS": "true",
+    "PATH": "/home/cabster/Documents/Codex/2026-10-04/ada-1-instalaci-n-del-entorno/work/flutter/bin:/home/cabster/Documents/Codex/2026-10-04/ada-1-instalaci-n-del-entorno/work/android-sdk/platform-tools:/home/cabster/Documents/Codex/2026-10-04/ada-1-instalaci-n-del-entorno/work/android-sdk/emulator:/home/cabster/Documents/Codex/2026-10-04/ada-1-instalaci-n-del-entorno/work/jdk17/bin:${env:PATH}"
+  }
+}
