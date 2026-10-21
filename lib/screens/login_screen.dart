@@ -2,30 +2,43 @@ import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
 
 class LoginScreen extends StatefulWidget {
-  const new({super.key});
+  const LoginScreen({super.key});
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-
-  //Control paaara mostrar/ocultar la contraseña
-  bool _isObscure = true;
+  //control para mostrar u ocultar la contraseña
+  bool _isObscuretext = true;
 
   //1.1 Crear el cerebro de la animacion
   StateMachineController? _controller;
 
-  //1.2 SMI: StateMachineInput / Entrada de máquina de estado
+  //1.2 SMI: StateMachineInput / Entrada de maquina de estado
   SMIBool? _isChecking;
   SMIBool? _isHandsUp;
-  SMITrigger? _trigSuccess;
-  SMITrigger? _trigFail;
   SMINumber? _numLook;
+
+  void _checkEmail() {
+    _isHandsUp?.change(false);
+    _isChecking?.change(true);
+  }
+
+  void _coverEyes() {
+    _isChecking?.change(false);
+    _isHandsUp?.change(true);
+  }
+
+  @override
+  void dispose() {
+    _controller?.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-
+    //Obtain the size of the screen .i.
     final Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: SingleChildScrollView(
@@ -34,99 +47,86 @@ class _LoginScreenState extends State<LoginScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Column(
               children: [
-                //Contiene la animacion
                 SizedBox(
                   width: size.width,
                   height: 200,
                   child: RiveAnimation.asset(
-                    'assets/login-bear-animation.riv', 
-                    //1.3 Vincular la animación
-                    onInit: (artboard){
+                    'assets/login-bear-animation.riv',
+                    //1.3 Vincular la animacion
+                    onInit: (artboard) {
                       _controller = StateMachineController.fromArtboard(
                         artboard,
                         'Login Machine',
-                        );
-                      //1.4 Verificaar que inicio bien
-                      if(_controller == null) return;
+                      );
+                      //1.4 verificar si inicio bien
+                      if (_controller == null) return;
 
-                      //Agregar el controlador aal taablero
+                      //agregar el controlador al tablero
                       artboard.addController(_controller!);
-                      //Vinculamos laas variables
-                      _isChecking = _controller!.findSMI('isChecking');
-                      _isHandsUp = _controller!.findSMI('isHandsUp');
-                      _trigSuccess = _controller!.findSMI('trigSuccess');
-                      _trigFail = _controller!.findSMI('trigFail');
-                      _numLook = _controller!.findSMI('numLook');
+
+                      //1.5 Vincular las entradas de la maquina de estado
+                      _isChecking = _controller?.findInput<bool>(
+                        'isChecking',
+                      ) as SMIBool?;
+                      _isHandsUp =
+                          _controller?.findInput<bool>('isHandsUp') as SMIBool?;
+                      _numLook = _controller?.findInput<double>(
+                        'numLook',
+                      ) as SMINumber?;
                     },
-                    )),
-                  //Para separar
-                  const SizedBox(height: 10),
-                  //Email
-                  TextField(
-                    onTap: () {
-                      _isHandsUp?.change(false);
-                      _isChecking?.change(true);
-                    },
-                    //1.5 vincular a campos de texto
-                    onChanged: (value){
-                      if(_isHandsUp != null){
-                        //No taapes los ojos
-                        _isHandsUp!.change(false);
-                      }
-                      //Si is Checking es null
-                      if(_isChecking == null) return;
-                      //Activar el modo chismoso
-                      _isChecking!.change(true);
-                      _numLook?.change(value.length.toDouble());
-                    },
-                    //Para mostrar un tipo de teclado
-                    keyboardType: TextInputType.emailAddress,
-                    decoration: InputDecoration(
-                      hintText: "Email",
-                      prefixIcon: const Icon(Icons.email),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12)
-                      )
+                  ),
+                ),
+
+                const SizedBox(height: 10),
+                //Email
+                TextField(
+                  onTap: _checkEmail,
+                  onChanged: (value) {
+                    _checkEmail();
+                    _numLook?.change(value.length.toDouble());
+                  },
+                  //para mostrar un tipo de teclado
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: InputDecoration(
+                    hintText: 'Email',
+                    prefixIcon: const Icon(Icons.email),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
                     ),
                   ),
-                  const SizedBox(height: 10),
-                  //Contraseña
-                  TextField(
-                    onTap: () {
-                      _isChecking?.change(false);
-                      _isHandsUp?.change(true);
-                    },
-                    //1.5 vincular a campos de texto
-                    onChanged: (value){
-                      if(_isChecking != null){
-                        //No taapes los ojos
-                        _isChecking!.change(false);
-                      }
-                      //Si is Checking es null
-                      if(_isHandsUp == null) return;
-                      //Activar el modo chismoso
-                      _isHandsUp!.change(true);
-                    },
-                    obscureText: _isObscure,
-                    decoration: InputDecoration(
-                      hintText: "Password",
-                      prefixIcon: const Icon(Icons.lock),
-                      suffixIcon: IconButton(icon: Icon(
-                          _isObscure ? Icons.visibility : Icons.visibility_off),
-                          onPressed: () {
-                            //Para refrescar el icono
-                            setState(() {
-                              _isObscure = !_isObscure;
-                            });
-                          }),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12)
-                          )
+                ),
+                const SizedBox(height: 10),
+                //Password
+                TextField(
+                  onTap: _coverEyes,
+                  onChanged: (value) {
+                    _coverEyes();
+                  },
+                  obscureText: _isObscuretext,
+                  decoration: InputDecoration(
+                    hintText: "Password",
+                    prefixIcon: const Icon(Icons.lock),
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        _isObscuretext
+                            ? Icons.visibility
+                            : Icons.visibility_off,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          _isObscuretext = !_isObscuretext;
+                        });
+                      },
                     ),
-                  )
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                ),
               ],
             ),
-          )),
+          ),
+        ),
       ),
     );
   }
