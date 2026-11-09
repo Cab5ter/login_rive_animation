@@ -1,6 +1,7 @@
 {
   "dart.flutterSdkPath": "/home/cabster/Documents/Codex/2026-10-04/ada-1-instalaci-n-del-entorno/work/flutter",
   "dart.env": {
+    "QT_QPA_PLATFORM": "xcb",
     "FLUTTER_ROOT": "/home/cabster/Documents/Codex/2026-10-04/ada-1-instalaci-n-del-entorno/work/flutter",
     "ANDROID_HOME": "/home/cabster/Documents/Codex/2026-10-04/ada-1-instalaci-n-del-entorno/work/android-sdk",
     "ANDROID_SDK_ROOT": "/home/cabster/Documents/Codex/2026-10-04/ada-1-instalaci-n-del-entorno/work/android-sdk",
@@ -13,6 +14,7 @@
     "FLUTTER_SUPPRESS_ANALYTICS": "true"
   },
   "terminal.integrated.env.linux": {
+    "QT_QPA_PLATFORM": "xcb",
     "FLUTTER_ROOT": "/home/cabster/Documents/Codex/2026-10-04/ada-1-instalaci-n-del-entorno/work/flutter",
     "ANDROID_HOME": "/home/cabster/Documents/Codex/2026-10-04/ada-1-instalaci-n-del-entorno/work/android-sdk",
     "ANDROID_SDK_ROOT": "/home/cabster/Documents/Codex/2026-10-04/ada-1-instalaci-n-del-entorno/work/android-sdk",
